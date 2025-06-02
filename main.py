@@ -1,5 +1,6 @@
 from langchain_ollama import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
+from vector import retriever
 
 model= OllamaLLM(
     model="llama3.2",
@@ -21,13 +22,11 @@ chain=prompt | model
 while True:
     print("\n\nWelcome to the Pizza Restaurant Q&A!")
     try:
-        question = input("Enter your question (or type 'exit' to quit): ")
-        if question.lower() == 'exit':
+        question = input("Enter your question (or type 'q' to quit): ")
+        if question.lower() == 'q':
             break
-        result = chain.invoke({
-            "reviews": "The pizza was great! The crust was crispy and the toppings were fresh. I loved the pepperoni and the cheese was perfectly melted. The service was also excellent, very friendly staff.",
-            "question": question
-        })
+        reviews = retriever.invoke(question)
+        result = chain.invoke({"reviews": reviews,"question": question})
         print(result)
     except Exception as e:
         print(f"An error occurred: {e}")

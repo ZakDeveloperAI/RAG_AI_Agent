@@ -17,7 +17,7 @@ if add_documents:
     for i, row in df.iterrows():
         document=Document(
             page_content=row['Title']+" "+row['Review'],
-            metadata={"rating": row['Rating'], "date": row['date']},
+            metadata={"rating": row['Rating'], "date": row['Date']},
             id=str(i)
         )
         ids.append(str(i))
@@ -31,3 +31,7 @@ vector_store= Chroma(
 
 if add_documents:
     vector_store.add_documents(documents=documents, ids=ids)
+
+retriever= vector_store.as_retriever(
+    search_kwargs={"k": 5} #it looks for the 5 most similar reviews
+)
