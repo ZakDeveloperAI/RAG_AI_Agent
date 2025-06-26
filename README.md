@@ -1,35 +1,25 @@
+# RAG AI Agent (Retrieval-Augmented Generation)
 
----
+Implementazione di un agente AI che utilizza RAG per integrare conoscenza esterna (es. documenti, database).
 
-## 📙 LangGraph_AI_Agent_System
+## 🔧 Componenti principali
+- **Ingestione documenti** (PDF, testo, web)
+- **Embedding + archiviazione** su ChromaDB come database vettoriale
+- **Retriever** per query semantiche sui vettori
+- **LLM** locali: Ollama 3.2 e Mistral
+- **Flusso**: utente → retriever → LLM → risposta
 
-```markdown
-# LangGraph AI Agent System
+## 🧩 Dipendenze
+- `langchain`
+- `chromadb`
+- `ollama` CLI (per Ollama 3.2)
+- `mistral` client
+- `openai` (facoltativo, per fallback)
+- `streamlit` (UI)
 
-Un sistema multi-agente orchestrato tramite grafi con LangGraph.
-
-## 🎯 Scopo
-Coordinare più agenti specializzati che cooperano per task complessi tramite un grafo di flusso.
-
-## 🛠 Tecnologie principali
-- **LangGraph** per definire il grafo e la logica di orchestrazione
-- **FastAPI** + Uvicorn per esporre le API
-- **LLM** remoto: Google Gemini via API
-- **Agent types**:
-  - **Retrieval Agent**: interroga ChromaDB o altro retriever
-  - **Classification Agent**: etichetta input/testo
-  - **Persona Simulator Agent**: simula comportamenti/risposte di un utente
-
-## 📦 Dipendenze
-- `langgraph`
-- `fastapi`, `uvicorn`
-- `requests` (per chiamate a Gemini)
-- `pytest`
-
-## 🧭 Setup
+## 🏗️ Installazione
 ```bash
-git clone https://github.com/ZakDeveloperAI/LangGraph_AI_Agent_System.git
-cd LangGraph_AI_Agent_System
+git clone https://github.com/ZakDeveloperAI/RAG_AI_Agent.git
+cd RAG_AI_Agent
 pip install -r requirements.txt
-export GEMINI_API_KEY="..."
-uvicorn main:app --reload
+# Assicurati di avere ChromaDB in esecuzione e Ollama/Mistral configurati localmente
