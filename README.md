@@ -15,7 +15,7 @@ Implementazione di un agente AI che utilizza RAG per integrare conoscenza estern
 - `ollama` CLI (per Ollama 3.2)
 - `mistral` client
 - `openai` (facoltativo, per fallback)
-- `streamlit` (UI)
+
 
 ## 🏗️ Installazione
 ```bash
